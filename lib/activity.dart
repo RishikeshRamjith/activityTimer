@@ -15,5 +15,12 @@ class Activity extends StatelessWidget {
         assert(color != null);
 
   @override
-  Widget build(BuildContext context) {}
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Text(name),
+        Text(duration.toString()),
+      ],
+    );
+  }
 }

@@ -15,32 +15,37 @@ class _HomeWidgetState extends State<Home> {
   final _activityList = <Activity>[];
 
   Activity act_0 = Activity(name: 'read', duration: 10, color: Colors.amber);
+  Activity act_1 = Activity(name: 'run', duration: 11, color: Colors.blue);
 
   @override
   void initState() {
     super.initState();
     _activityList.add(act_0);
+    _activityList.add(act_1);
     _defaultActivity = _activityList[0];
-    _currentActivity = _activityList[0];
+    _currentActivity = _activityList[1];
+  }
+
+  Widget _buildActivityWidgets() {
+    return ListView.builder(
+      itemBuilder: (BuildContext context, int index) => _activityList[index],
+      itemCount: _activityList.length,
+    );
   }
 
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Timer',
-        theme: ThemeData(
-          textTheme: Theme.of(context).textTheme.apply(
-              bodyColor: _currentActivity.color,
-              displayColor: _currentActivity.color),
-          primaryColor: _currentActivity.color,
-          scaffoldBackgroundColor: _currentActivity.color,
-        ),
-        home: Expanded(
-            flex: 3,
-            child: Column(
-              children: [
-                Text(_currentActivity.name),
-                Text(_currentActivity.duration.toString()),
-              ],
-            )));
+    final appBar = AppBar(
+      backgroundColor: _currentActivity.color,
+      elevation: 0,
+    );
+
+    //final
+    return Scaffold(
+      backgroundColor: _currentActivity.color,
+      appBar: appBar,
+      drawer: Drawer(
+        child: _buildActivityWidgets(),
+      ),
+    );
   }
 }
