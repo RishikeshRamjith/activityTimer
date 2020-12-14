@@ -16,11 +16,25 @@ class Activity extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(name),
-        Text(duration.toString()),
-      ],
+    final heading = FittedBox(
+      child: Text(
+        name,
+        style: TextStyle(
+          fontSize: 20,
+        ),
+      ),
+    );
+
+    final durationW = FittedBox(
+      child: Text(duration.toString()),
+    );
+
+    final col = Column(
+      children: [heading, durationW],
+    );
+
+    return Container(
+      child: col,
     );
   }
 }

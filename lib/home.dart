@@ -1,3 +1,4 @@
+import 'package:activitytimer/activity_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 import 'activity.dart';
@@ -26,9 +27,14 @@ class _HomeWidgetState extends State<Home> {
     _currentActivity = _activityList[1];
   }
 
-  Widget _buildActivityWidgets() {
+  Widget _buildActivityTileWidgets() {
     return ListView.builder(
-      itemBuilder: (BuildContext context, int index) => _activityList[index],
+      itemBuilder: (BuildContext context, int index) {
+        var _activity = _activityList[index];
+        return ActivityTile(
+          activity: _activity,
+        );
+      },
       itemCount: _activityList.length,
     );
   }
@@ -44,7 +50,7 @@ class _HomeWidgetState extends State<Home> {
       backgroundColor: _currentActivity.color,
       appBar: appBar,
       drawer: Drawer(
-        child: _buildActivityWidgets(),
+        child: _buildActivityTileWidgets(),
       ),
     );
   }
